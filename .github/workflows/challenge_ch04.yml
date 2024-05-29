@@ -1,0 +1,25 @@
+name: Challenge Chapter 4
+
+on: push
+
+jobs:
+  test:
+    name: Test Python script
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo to runner
+        uses: actions/checkout@v4
+      - name: Run Python script
+        run: python hello.py
+  build:
+    name: Build Python app
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo to runner
+        uses: actions/checkout@v4
+      - name: Build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello
+          path: .
